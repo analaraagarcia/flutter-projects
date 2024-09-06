@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projectnoobs/models/category.dart';
 import 'package:projectnoobs/models/contact.dart';
-import 'package:projectnoobs/models/doctor.dart';
+import 'package:projectnoobs/models/person.dart';
 import 'package:projectnoobs/pages/detail.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<CategoryModel> categoriesData = CategoryModel.getCategories();
   final List<ContactModel> contactsData = ContactModel.getContacts();
-  final List<DoctorModel> doctorsData = DoctorModel.getDoctors();
+  final List<PersonModel> personData = PersonModel.getPerson();
 
   get child => null;
 
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [header(), categories(), doctors()],
+          children: [header(), categories(), person()],
         ),
       ),
     );
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget doctors() {
+  Widget person() {
     return ListView.separated(
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => DetailPage(
-                      doctorModel: doctorsData[index],
+                      personModel: personData[index],
                     ),
                   ));
             },
@@ -175,11 +175,11 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     width: 110,
                     decoration: BoxDecoration(
-                        color: doctorsData[index].imageBox,
+                        color: personData[index].imageBox,
                         borderRadius: BorderRadius.circular(16),
                         image: DecorationImage(
                             alignment: Alignment.bottomCenter,
-                            image: AssetImage(doctorsData[index].image))),
+                            image: AssetImage(personData[index].image))),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -187,14 +187,14 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          doctorsData[index].name,
+                          personData[index].name,
                           style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 16,
                           ),
                         ),
                         Text(
-                          doctorsData[index].specialties.first,
+                          personData[index].specialties.first,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 12),
                         ),
@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
         separatorBuilder: (context, index) => const SizedBox(
               height: 15,
             ),
-        itemCount: doctorsData.length);
+        itemCount: personData.length);
   }
 
   // Column footer() {

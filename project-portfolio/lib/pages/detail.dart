@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projectnoobs/models/contact.dart';
-import 'package:projectnoobs/models/doctor.dart';
+import 'package:projectnoobs/models/person.dart';
 
 class DetailPage extends StatefulWidget {
-  final DoctorModel doctorModel;
-  const DetailPage({required this.doctorModel, super.key});
+  final PersonModel personModel;
+  const DetailPage({required this.personModel, super.key});
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -80,11 +80,11 @@ class _DetailPageState extends State<DetailPage> {
               Container(
                 width: 110,
                 decoration: BoxDecoration(
-                    color: widget.doctorModel.imageBox,
+                    color: widget.personModel.imageBox,
                     borderRadius: BorderRadius.circular(16),
                     image: DecorationImage(
                         alignment: Alignment.bottomCenter,
-                        image: AssetImage(widget.doctorModel.image))),
+                        image: AssetImage(widget.personModel.image))),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -92,14 +92,14 @@ class _DetailPageState extends State<DetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.doctorModel.name,
+                      widget.personModel.name,
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
                       ),
                     ),
                     Text(
-                      widget.doctorModel.specialties.first,
+                      widget.personModel.specialties.first,
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 12),
                     ),
@@ -143,7 +143,7 @@ class _DetailPageState extends State<DetailPage> {
           height: 10,
         ),
         Text(
-          widget.doctorModel.bio,
+          widget.personModel.bio,
           style: TextStyle(
               color: Colors.black.withOpacity(0.5),
               fontWeight: FontWeight.w500,
@@ -165,7 +165,7 @@ class _DetailPageState extends State<DetailPage> {
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Text(
-                widget.doctorModel.specialties[index],
+                widget.personModel.specialties[index],
                 style: const TextStyle(
                     color: Colors.black,
                     decoration: TextDecoration.underline,
@@ -176,7 +176,7 @@ class _DetailPageState extends State<DetailPage> {
             separatorBuilder: (context, index) => const SizedBox(
               width: 10,
             ),
-            itemCount: widget.doctorModel.specialties.length,
+            itemCount: widget.personModel.specialties.length,
             scrollDirection: Axis.horizontal,
           ),
         )
